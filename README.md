@@ -1,37 +1,61 @@
-# Ether homepage — review version
+# Ether corporate website
 
-Static HTML, CSS, and JavaScript. Local preview only; the live GoDaddy website has not been modified.
+A responsive corporate website built with plain HTML, CSS and JavaScript. GitHub is the source of truth; GoDaddy remains the production host.
+
+## Review status
+
+The approved homepage is saved at commit `bb3053f`. The `site-expansion` branch adds the core interior pages for review. The live GoDaddy site has not been modified.
+
+Available pages:
+- Home
+- Expertise — six capability sections
+- Case Studies — National Geographic, Marriott and Nestlé listing structure
+- Products — Catalyst, Open Air and Wish You Were Here
+- Ideas — listing and a permanent rapid-prototyping article
+- Ether Gov — mission and capabilities structure
+- About Ether
+- 404 page
+
+All pages retain `noindex` while content is being finalized. Case-study narratives, government credentials, legal copy and the new contact integration are still pending. Contact links currently use the existing live form. The sample article and expanded copy are review drafts.
+
+See [content to finalize](docs/content-to-finalize.md) and the [GitHub-to-GoDaddy release process](docs/deployment.md).
+
+## Local preview and checks
+
+```sh
+python3 -m http.server 8765 --bind 127.0.0.1
+node --check script.js
+python3 scripts/check_site.py
+python3 scripts/package_site.py
+```
+
+Open http://127.0.0.1:8765/. There are no package installs or build dependencies. Python is used only for local checks/packaging; the deployed website needs no Python or Node runtime.
+
+GitHub Actions runs the checks and produces a versioned review ZIP with a revision/file-hash manifest. Only public website files are packaged. Repository files, screenshots and development scripts are excluded. No automatic GoDaddy deployment is enabled.
 
 ## Design
-- Ether blue #006699, orange #ff6633, light #dedede, dark #333333.
-- Libre Baskerville headings; Inter body, subheads and eyebrows; Georgia and Arial/Helvetica fallbacks.
-- Photography has no CSS color filter. Neutral dark scrims behind overlaid copy preserve legibility.
-- Desktop/mobile navigation links to homepage sections for this phase.
 
-## Editorial review before publication
-- National Geographic, Marriott and Nestlé were confirmed by the user as the three featured organizations. No project outcomes or direct corporate-contract claims have been invented. Detail pages and visuals remain to be developed; current links lead to contact.
-- The prototype article is newly drafted review copy based on the deck's proposed title. It opens in a dialog in this homepage-only preview. The full site should give it a permanent HTML URL and article metadata.
-- Product teaser wording and all newly expanded copy need editorial review. Catalyst description follows its current live offering rather than the deck's outdated MVP tagline.
-- Contact currently leads to the existing live contact section. No new form endpoint or submissions have been created.
-- Government identifiers, capability PDFs, case study metrics, and legal pages are intentionally not fabricated.
-- This preview has noindex/nofollow. Remove at launch after the final URL and content are approved.
-- Approve the stock photograph before publication. It illustrates a service interaction; it is not identified as an Ether client or a first sale.
+- Blue `#006699`, orange `#ff6633`, light `#dedede`, dark `#333333`.
+- Libre Baskerville headings, Inter body/subheads/eyebrows; Georgia and Arial/Helvetica fallbacks.
+- Locally hosted Google Fonts and licenses in `assets/`.
+- Real stock photography with no added color filters; neutral dark overlays keep text readable.
+- Homepage header starts transparent and turns white after scrolling its own height; interior-page headers stay white.
+- Hero: three slides, five-second crossfade, manual controls and pause/play. Keyboard interaction/manual selection stops rotation. Hover, offscreen position and background tabs suspend the timer. Reduced-motion users start paused without transitions. Inactive slides are inert.
 
-## Assets
-Photo: Vitaly Gariev, “A customer receives a coffee at a coffee shop”
-https://unsplash.com/photos/a-customer-receives-a-coffee-at-a-coffee-shop-a641UgoV9Yw
-License: https://unsplash.com/license (free commercial use; checked September 16, 2026).
-Source: https://images.unsplash.com/photo-1753351050669-542926cc048a
-Logo: supplied Ether branding/ether_brand_final.png, unchanged.
-Fonts: Google Fonts Libre Baskerville and Inter, locally hosted. See assets/font-licenses.
+## Editing
 
-## Preview
-Serve this folder using any static web server. No package install or build step required.
+Each page is a normal `index.html` inside its route folder, with shared `styles.css` and `script.js`. Update the shared header/footer consistently when editing navigation; page-specific links use clean folder URLs. New Ideas articles can follow `ideas/rapid-prototyping/index.html`, with a new title, description, canonical URL and listing entry. Verify any author/date metadata before publishing.
 
-## Hero carousel
-Three photographs and messages, rotating every five seconds with a crossfade. Manual selection and keyboard focus stop automatic rotation; Play resumes it. Hover, background tabs, and scrolling the hero out of view suspend the timer. Reduced-motion users start paused and see no transitions. All inactive slides are inert and hidden from assistive technology.
-Header overlays the hero transparently, becoming white after scrolling its own height.
-Additional photographs, free under the Unsplash License:
-- Products: Annie Spratt, https://unsplash.com/photos/group-of-people-using-laptop-computer-QckxruozjRg
-- Public services: Yuliia Kucherenko, https://unsplash.com/photos/a-group-of-people-sitting-at-desks-in-a-library-yEB_tCgb-gk
-These are illustrative stock photographs, not Ether team or client representations.
+Keep `/products/catalyst/` outside this project's deployment package. Its existing application and PHP lead handler must be preserved when publishing corporate pages.
+
+## Asset credits
+
+Logo: supplied `ether_brand_final.png`.
+
+Photographs are illustrative stock, not representations of Ether staff, clients or completed engagements. All selected images were listed as free under the [Unsplash License](https://unsplash.com/license), checked September 16, 2026.
+
+- Vitaly Gariev: [café transaction](https://unsplash.com/photos/a-customer-receives-a-coffee-at-a-coffee-shop-a641UgoV9Yw)
+- Annie Spratt: [team working at laptops](https://unsplash.com/photos/group-of-people-using-laptop-computer-QckxruozjRg)
+- Yuliia Kucherenko: [people in a library](https://unsplash.com/photos/a-group-of-people-sitting-at-desks-in-a-library-yEB_tCgb-gk)
+
+Fonts: Libre Baskerville and Inter via Google Fonts. License files are in `assets/font-licenses/`.

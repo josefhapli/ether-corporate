@@ -16,20 +16,10 @@ document.addEventListener('keydown', event => {
   }
 });
 matchMedia('(min-width:851px)').addEventListener('change', closeMenu);
-const dialog = document.querySelector('#idea-dialog');
-document.querySelector('[data-open-idea]').addEventListener('click', () => {
-  dialog.showModal(); document.body.classList.add('dialog-open');
-});
-document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
-dialog.addEventListener('close', () => document.body.classList.remove('dialog-open'));
-dialog.addEventListener('click', event => {
-  const bounds = dialog.getBoundingClientRect();
-  if (event.target === dialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) dialog.close();
-});
 document.querySelector('#year').textContent = new Date().getFullYear();
 const header = document.querySelector('.header');
 function updateHeader() {
-  header.classList.toggle('is-scrolled', window.scrollY >= header.offsetHeight);
+  header.classList.toggle('is-scrolled', document.body.classList.contains('inner-page') || window.scrollY >= header.offsetHeight);
 }
 window.addEventListener('scroll', updateHeader, { passive: true });
 window.addEventListener('resize', updateHeader);
@@ -37,6 +27,7 @@ updateHeader();
 
 // Auto-rotation stops for deliberate interaction and reduced-motion users.
 const hero = document.querySelector('.hero');
+if (hero) {
 const slides = [...hero.querySelectorAll('.hero-slide')];
 const selectors = [...hero.querySelectorAll('[data-slide]')];
 const rotationButton = hero.querySelector('.rotation-toggle');
@@ -76,3 +67,5 @@ document.addEventListener('visibilitychange', scheduleRotation);
 reducedMotion.addEventListener('change', () => { paused = reducedMotion.matches; scheduleRotation(); });
 new IntersectionObserver(entries => { heroVisible = entries[0].isIntersecting; scheduleRotation(); }).observe(hero);
 scheduleRotation();
+
+}
