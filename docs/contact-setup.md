@@ -7,13 +7,12 @@
 - No form contents or HubSpot response bodies written to logs; rate files contain timestamps only and use keyed IP hashes.
 - Errors retain the typed message. No success response until HubSpot returns 2xx. Transport timeouts are reported as unconfirmed delivery, never automatically retried.
 
-## Still required: HubSpot sign-in and setup
-The available browser opened HubSpot's login screen. No corporate form was created and no notification settings have been changed yet.
-
-1. Sign in to portal 247280970. Inspect the current Catalyst form notification recipients and mirror them on a **new** form called Ether Corporate Inquiry. Do not alter the Catalyst form or send corporate inquiries to its form ID.
-2. Add these Contact properties to the new form: `firstname` (label Name), `email`, `company` (label Organization, optional), `message` (multiline). The handler maps all four with objectTypeId `0-1`. This intentionally differs from Catalyst's Company-object `name` field.
-3. Require Name, Email and Message. Verify privacy settings for inquiry processing and no marketing subscriptions. If HubSpot requires an explicit consent field, align the site and payload with that configured field before enabling; do not bypass validation.
-4. Configure the same internal notification recipients as Catalyst and ensure notifications include the message. Publish the form, then record its GUID in the private server configuration. Publishing this form does not replace the existing website.
+## HubSpot configured September 18, 2026
+- Published **Ether Corporate Inquiry**, portal `247280970`, form `4d984f04-b21b-4cee-8e26-5d7597f495dd`.
+- Contact properties: `firstname` (required, website label Name), `email` (required), `company` (Organization, optional), `message` (What are you working on?, required).
+- Notification recipient: `josef@etherstudios.net`, matching Catalyst. Contact-owner notifications are off. Catalyst was not modified.
+- No marketing opt-in field or follow-up email was added. The website sends inquiry data only.
+- Publication verified in HubSpot. A real submission and notification receipt still need verification.
 
 ## GoDaddy setup before launch
 - PHP 8.1+ and cURL required. Confirm the hosting PHP version.

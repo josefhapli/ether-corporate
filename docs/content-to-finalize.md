@@ -11,7 +11,7 @@ The user approved building the structure first; substantive case-study and gover
 | Ideas | Listing, one permanent article, repeatable layout | Approve the sample article, author and publication date; add Article schema at publication |
 | Ether Gov | Mission, capabilities and contact structure | Verified entity name, UEI, CAGE, NAICS, SAM status, classifications, corporate versus team experience, contract vehicles and capability PDF |
 | About | Philosophy and approach | Final company copy and any leadership information |
-| Contact | Four-field contact page and PHP handler; validation and rate-limit tests | HubSpot sign-in, dedicated form and matching notification recipients, private hosting config, end-to-end test |
+| Contact | Four-field contact page and PHP handler; validation and rate-limit tests | Private hosting config, end-to-end test and notification receipt (dedicated HubSpot form and recipient configured) |
 | Legal | Not fabricated | Approved privacy/terms content and actual data-processing setup |
 | Migration | Review package and revision manifest | Current URL inventory, redirects, hosting backup, document root and deployment access |
 

@@ -17,7 +17,7 @@ Available pages:
 - Contact — corporate inquiry form and PHP handler
 - 404 page
 
-All pages retain `noindex` while content is being finalized. Case-study narratives, government credentials and legal copy are pending. The contact page and PHP handler are built; HubSpot configuration and end-to-end notification verification remain pending. The sample article and expanded copy are review drafts.
+All pages retain `noindex` while content is being finalized. Case-study narratives, government credentials and legal copy are pending. The contact page and PHP handler are built; The dedicated HubSpot form is published; end-to-end notification verification and private GoDaddy configuration remain pending. The sample article and expanded copy are review drafts.
 
 See [content to finalize](docs/content-to-finalize.md) and the [GitHub-to-GoDaddy release process](docs/deployment.md).
 
