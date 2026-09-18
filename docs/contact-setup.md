@@ -12,7 +12,7 @@
 - Contact properties: `firstname` (required, website label Name), `email` (required), `company` (Organization, optional), `message` (What are you working on?, required).
 - Notification recipient: `josef@etherstudios.net`, matching Catalyst. Contact-owner notifications are off. Catalyst was not modified.
 - No marketing opt-in field or follow-up email was added. The website sends inquiry data only.
-- Publication verified in HubSpot. One authorized test submission was received on September 18, 2026 at 2:01 PM EDT. All four fields and the complete message were verified in HubSpot (submission `dcbd9d25-d38d-4408-a74e-9ba066ce5f45`). Notification email receipt still awaits recipient confirmation.
+- Publication verified in HubSpot. One authorized test submission was received on September 18, 2026 at 2:01 PM EDT. All four fields and the complete message were verified in HubSpot (submission `dcbd9d25-d38d-4408-a74e-9ba066ce5f45`). Josef confirmed successful receipt of the notification email.
 
 ## GoDaddy setup before launch
 - PHP 8.1+ and cURL required. Confirm the hosting PHP version.
@@ -22,8 +22,8 @@
 - Purge rate-limit JSON files older than one day during routine server maintenance; the files contain no raw IP addresses or inquiry content.
 - Preserve `/products/catalyst/` and its handler. Do not change its configuration.
 
-## Notification receipt still pending
-Use a clearly labeled test inquiry with an approved email address. Verify the contact record, organization, complete message and receipt by the intended HubSpot notification recipients. Do not infer notification delivery merely from a 2xx API response. Finish the website privacy notice before public launch.
+## End-to-end verification complete
+The local website submitted an authorized, clearly labeled test inquiry. All four fields were verified in HubSpot and Josef confirmed notification receipt. Repeat this check from GoDaddy after deployment. Finish the website privacy notice before public launch.
 
 ## Local preview
 Use `php -S 127.0.0.1:8765 -t .` to serve the site and handler. Without a private config, valid submissions return 503 with an honest "not connected yet" message and the email fallback; nothing is sent to HubSpot. Never add a fake-success switch to the production endpoint.
