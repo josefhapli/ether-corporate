@@ -13,7 +13,7 @@ GitHub is the source of truth for website code. GoDaddy remains the production h
 
 ## Current limitations
 - ZIPs are review builds and intentionally retain noindex. They are not launch-ready packages.
-- Contact currently links to the existing site. Do not replace production until the new contact endpoint is integrated and tested.
+- Contact now uses the corporate PHP endpoint. It stays disabled until private HubSpot configuration is installed; follow docs/contact-setup.md and verify notification delivery before launch.
 - No production credentials are stored in the repository. No deployment workflow or hosting connection has been enabled.
 - 404.html is provided; GoDaddy/Apache error routing is not yet configured.
 - No .htaccess file is supplied; preserve the live one until its WordPress rules and redirects are reviewed.
@@ -22,6 +22,8 @@ GitHub is the source of truth for website code. GoDaddy remains the production h
 ## Local checks
 ```
 node --check script.js
+node --check contact.js
+php tests/contact_test.php
 python3 scripts/check_site.py
 python3 scripts/package_site.py
 ```

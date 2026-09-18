@@ -14,22 +14,25 @@ Available pages:
 - Ideas — listing and a permanent rapid-prototyping article
 - Ether Gov — mission and capabilities structure
 - About Ether
+- Contact — corporate inquiry form and PHP handler
 - 404 page
 
-All pages retain `noindex` while content is being finalized. Case-study narratives, government credentials, legal copy and the new contact integration are still pending. Contact links currently use the existing live form. The sample article and expanded copy are review drafts.
+All pages retain `noindex` while content is being finalized. Case-study narratives, government credentials and legal copy are pending. The contact page and PHP handler are built; HubSpot configuration and end-to-end notification verification remain pending. The sample article and expanded copy are review drafts.
 
 See [content to finalize](docs/content-to-finalize.md) and the [GitHub-to-GoDaddy release process](docs/deployment.md).
 
 ## Local preview and checks
 
 ```sh
-python3 -m http.server 8765 --bind 127.0.0.1
+php -S 127.0.0.1:8765 -t .
 node --check script.js
+node --check contact.js
+php tests/contact_test.php
 python3 scripts/check_site.py
 python3 scripts/package_site.py
 ```
 
-Open http://127.0.0.1:8765/. There are no package installs or build dependencies. Python is used only for local checks/packaging; the deployed website needs no Python or Node runtime.
+Open http://127.0.0.1:8765/. There are no package installs or build dependencies. Python is used only for local checks/packaging; the deployed website needs no Python or Node runtime. The contact endpoint requires PHP 8.1+ with cURL.
 
 GitHub Actions runs the checks and produces a versioned review ZIP with a revision/file-hash manifest. Only public website files are packaged. Repository files, screenshots and development scripts are excluded. No automatic GoDaddy deployment is enabled.
 
@@ -59,3 +62,5 @@ Photographs are illustrative stock, not representations of Ether staff, clients 
 - Yuliia Kucherenko: [people in a library](https://unsplash.com/photos/a-group-of-people-sitting-at-desks-in-a-library-yEB_tCgb-gk)
 
 Fonts: Libre Baskerville and Inter via Google Fonts. License files are in `assets/font-licenses/`.
+
+See [contact setup and pending verification](docs/contact-setup.md).

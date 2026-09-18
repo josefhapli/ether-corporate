@@ -11,7 +11,7 @@ The user approved building the structure first; substantive case-study and gover
 | Ideas | Listing, one permanent article, repeatable layout | Approve the sample article, author and publication date; add Article schema at publication |
 | Ether Gov | Mission, capabilities and contact structure | Verified entity name, UEI, CAGE, NAICS, SAM status, classifications, corporate versus team experience, contract vehicles and capability PDF |
 | About | Philosophy and approach | Final company copy and any leadership information |
-| Contact | Existing live form remains linked | Confirm fields and notification recipient; adapt Catalyst PHP/HubSpot pattern, test real submissions before replacing the old site |
+| Contact | Four-field contact page and PHP handler; validation and rate-limit tests | HubSpot sign-in, dedicated form and matching notification recipients, private hosting config, end-to-end test |
 | Legal | Not fabricated | Approved privacy/terms content and actual data-processing setup |
 | Migration | Review package and revision manifest | Current URL inventory, redirects, hosting backup, document root and deployment access |
 
@@ -27,6 +27,6 @@ The user approved building the structure first; substantive case-study and gover
 - Approve all copy and imagery; stock photographs are illustrative, not Ether team/client depictions.
 - Add verified government procurement information and downloads only when supplied.
 - Add final article author/date and structured data without inventing dates.
-- Replace the old-site contact link with a working corporate form endpoint.
+- Enable the dedicated corporate HubSpot form after verifying field mapping and notification delivery.
 - Prepare final canonical metadata, robots.txt, sitemap.xml and redirects; remove noindex only for launch.
 - Confirm the production package preserves /products/catalyst/ and its handler and never uploads development files.

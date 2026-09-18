@@ -13,7 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Check JavaScript syntax
-        run: node --check script.js
+        run: |
+          node --check script.js
+          node --check contact.js
+      - name: Check inquiry handler
+        run: |
+          php -l api/contact.php
+          php -l api/contact-lib.php
+          php tests/contact_test.php
       - name: Check pages and prepare package
         run: python3 scripts/package_site.py
       - name: Save versioned review package
