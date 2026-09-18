@@ -12,7 +12,7 @@
 - Contact properties: `firstname` (required, website label Name), `email` (required), `company` (Organization, optional), `message` (What are you working on?, required).
 - Notification recipient: `josef@etherstudios.net`, matching Catalyst. Contact-owner notifications are off. Catalyst was not modified.
 - No marketing opt-in field or follow-up email was added. The website sends inquiry data only.
-- Publication verified in HubSpot. A real submission and notification receipt still need verification.
+- Publication verified in HubSpot. One authorized test submission was received on September 18, 2026 at 2:01 PM EDT. All four fields and the complete message were verified in HubSpot (submission `dcbd9d25-d38d-4408-a74e-9ba066ce5f45`). Notification email receipt still awaits recipient confirmation.
 
 ## GoDaddy setup before launch
 - PHP 8.1+ and cURL required. Confirm the hosting PHP version.
@@ -22,7 +22,7 @@
 - Purge rate-limit JSON files older than one day during routine server maintenance; the files contain no raw IP addresses or inquiry content.
 - Preserve `/products/catalyst/` and its handler. Do not change its configuration.
 
-## End-to-end verification still pending
+## Notification receipt still pending
 Use a clearly labeled test inquiry with an approved email address. Verify the contact record, organization, complete message and receipt by the intended HubSpot notification recipients. Do not infer notification delivery merely from a 2xx API response. Finish the website privacy notice before public launch.
 
 ## Local preview
