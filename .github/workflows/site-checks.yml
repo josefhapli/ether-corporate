@@ -1,4 +1,4 @@
-name: Website checks and review package
+name: Website checks and release package
 on:
   push:
     branches: [main, site-expansion]
@@ -22,11 +22,11 @@ jobs:
           php -l api/contact-lib.php
           php tests/contact_test.php
       - name: Check pages and prepare package
-        run: python3 scripts/package_site.py
-      - name: Save versioned review package
+        run: python3 scripts/package_site.py --release
+      - name: Save versioned release package
         uses: actions/upload-artifact@v4
         with:
-          name: ether-review-${{ github.sha }}
+          name: ether-release-${{ github.sha }}
           path: dist/*.zip
           if-no-files-found: error
           retention-days: 30

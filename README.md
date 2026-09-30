@@ -2,24 +2,15 @@
 
 A responsive corporate website built with plain HTML, CSS and JavaScript. GitHub is the source of truth; GoDaddy remains the production host.
 
-## Review status
+## Production status
 
-The approved homepage is saved at commit `bb3053f`. The `site-expansion` branch adds the core interior pages for review. The live GoDaddy site has not been modified.
+The redesigned website is live at https://www.etherstudios.net/, deployed September 26, 2026. The current public source matches the deployed release, including the favicon, search/social metadata, sitemap and routing configuration. The existing Catalyst application is preserved separately.
 
-Available pages:
-- Home
-- Expertise — six capability sections
-- Case Studies — National Geographic, Marriott and Nestlé listing structure
-- Products — Catalyst, Open Air and Wish You Were Here
-- Ideas — listing and a permanent rapid-prototyping article
-- Ether Gov — mission and capabilities structure
-- About Ether
-- Contact — corporate inquiry form and PHP handler
-- 404 page
+The site includes Home, Expertise, Case Studies, Products, Ideas, the rapid-prototyping article, Ether Gov, About, Contact and a custom 404 page. Current content is approved for launch; expanded case studies, government credentials and approved legal copy remain editorial follow-ups.
 
-All pages retain `noindex` while content is being finalized. Case-study narratives, government credentials and legal copy are pending. The contact page and PHP handler are built; The dedicated HubSpot form is published; end-to-end submission and notification delivery are verified. Private GoDaddy configuration remains pending. The sample article and expanded copy are review drafts.
+The corporate inquiry handler is configured privately on GoDaddy using PHP 8.3 and cURL. Dedicated HubSpot form submission and email notification were verified September 18. No credentials or hosting backups belong in this repository.
 
-See [content to finalize](docs/content-to-finalize.md) and the [GitHub-to-GoDaddy release process](docs/deployment.md).
+See [deployment and rollback](docs/deployment.md).
 
 ## Local preview and checks
 
@@ -29,12 +20,12 @@ node --check script.js
 node --check contact.js
 php tests/contact_test.php
 python3 scripts/check_site.py
-python3 scripts/package_site.py
+python3 scripts/package_site.py --release
 ```
 
 Open http://127.0.0.1:8765/. There are no package installs or build dependencies. Python is used only for local checks/packaging; the deployed website needs no Python or Node runtime. The contact endpoint requires PHP 8.1+ with cURL.
 
-GitHub Actions runs the checks and produces a versioned review ZIP with a revision/file-hash manifest. Only public website files are packaged. Repository files, screenshots and development scripts are excluded. No automatic GoDaddy deployment is enabled.
+GitHub Actions runs the checks and produces a versioned release-candidate ZIP with a revision/file-hash manifest. Only public website files are packaged. Repository files, screenshots and development scripts are excluded. No automatic GoDaddy deployment is enabled.
 
 ## Design
 

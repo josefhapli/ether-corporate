@@ -1,0 +1,16 @@
+# Ether corporate site: scoped to the main domain; preserve hosted applications.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?etherstudios\.net$ [NC]
+RewriteRule ^$ index.html [END]
+RewriteCond %{HTTP_HOST} ^(www\.)?etherstudios\.net$ [NC]
+RewriteCond %{THE_REQUEST} \s/+index\.php(?:[?\s]) [NC]
+RewriteRule ^index\.php$ / [R=302,L]
+</IfModule>
+<If "%{HTTP_HOST} =~ m#^(www\.)?etherstudios\.net$#">
+ErrorDocument 404 /404.html
+</If>
+
+# BEGIN WordPress
+# Retained for rollback. Corporate homepage is served by the rules above.
+# END WordPress

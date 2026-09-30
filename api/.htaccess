@@ -1,0 +1,2 @@
+# Scope the supported PHP runtime to the corporate inquiry API only.
+AddHandler application/x-httpd-alt-php83___lsphp .php

@@ -6,3 +6,8 @@ dist/
 !.env.example
 *.log
 __pycache__/
+
+# Local hosting backups and operational handoffs
+docs/production-backup-*/
+docs/Production-Preflight.md
+docs/Launch-follow-up.md

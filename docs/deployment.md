@@ -1,34 +1,30 @@
 # GitHub → GoDaddy
 
-GitHub is the source of truth for website code. GoDaddy remains the production host. This branch does not deploy to the live site.
+GitHub stores the website source; GoDaddy serves production at https://www.etherstudios.net/. The redesign was deployed September 26, 2026. GitHub pushes do not automatically change production.
 
-## Review and release flow
-1. Make changes on a review branch and open a pull request against main.
-2. GitHub Actions checks HTML links/assets and JavaScript syntax, then produces a ZIP review package named with the exact commit SHA. Download it from the workflow run's Artifacts section.
-3. Review the preview and complete docs/content-to-finalize.md. Merge approved code into main.
-4. Once launch content and the contact form are complete, prepare the production metadata and migration rules in another reviewed commit. Record a release tag and use the passing package for that exact version.
-5. Back up the current GoDaddy document root, configuration and any affected data before replacing the corporate pages. Confirm the document root and existing WordPress routing rules in cPanel; those still need a migration-specific review.
-6. Upload only the packaged public files using cPanel or the approved deployment connection. Preserve existing product files, especially /products/catalyst/ and its api/leads.php. Do not mirror-delete or replace the entire products directory.
-7. Verify production URLs, HTTPS, navigation, mobile layouts, the contact submission and the existing Catalyst page/form. Record the deployed SHA and date.
+## Build and verify
 
-## Current limitations
-- ZIPs are review builds and intentionally retain noindex. They are not launch-ready packages.
-- Contact now uses the corporate PHP endpoint. It stays disabled until private HubSpot configuration is installed; follow docs/contact-setup.md and verify notification delivery before launch.
-- No production credentials are stored in the repository. No deployment workflow or hosting connection has been enabled.
-- 404.html is provided; GoDaddy/Apache error routing is not yet configured.
-- No .htaccess file is supplied; preserve the live one until its WordPress rules and redirects are reviewed.
-- The package includes release-manifest.json (revision and file hashes). A locally modified checkout is marked working-copy; use clean committed builds for releases.
-
-## Local checks
-```
+```sh
 node --check script.js
 node --check contact.js
+php -l api/contact.php
+php -l api/contact-lib.php
 php tests/contact_test.php
-python3 scripts/check_site.py
-python3 scripts/package_site.py
+python3 scripts/package_site.py --release
 ```
 
-The scripts use only standard libraries. The deployed site needs no Node/Python runtime or build step.
+Build from a clean committed checkout. The ZIP contains only public website files and a manifest with the full revision and SHA-256 file hashes. Its filename includes a content hash. `launch-candidate` identifies packaging mode, not deployment approval. GitHub Actions validates and retains the package as a build artifact; generated ZIPs remain outside Git history.
 
-## Rollback
-Restore the backed-up corporate files and routing configuration if launch verification fails. Do not revert unrelated product application data or leads. Record the restored revision and reason.
+## Deploy
+
+1. Verify the exact package and manifest, and back up overwritten production files and routing outside the public root.
+2. Install only manifest-listed files. `scripts/install_release.py` verifies source hashes, creates a private backup and rollback script, and checks installed hashes. Run with umask 022 so public directories are traversable.
+3. Preserve WordPress files, private contact configuration, unrelated hosted domains and all existing product applications. Never mirror-delete or replace the entire products directory. `/products/catalyst/` and its lead handler are outside this package.
+4. Verify HTTPS, all corporate pages and assets, homepage redirects, custom 404 responses, contact endpoint behavior and Catalyst preservation.
+5. Record the deployed revision and backup location privately. To roll back, run the backup's generated `rollback.py`; do not revert unrelated application data.
+
+Root `.htaccess` scopes corporate homepage and error routing to Ether's domain. `api/.htaccess` selects PHP 8.3 for the corporate API. Contact credentials and rate-limit storage remain outside the public root and repository.
+
+## Verified production state
+
+All 30 directly served public files match the release; HTML comparison accounts for GoDaddy's injected monitoring scripts. Missing routes return 404, explicit index.php visits redirect to the homepage, and Catalyst's response matches its predeployment baseline. Contact rejects unsupported GET requests. Dedicated HubSpot submission and email delivery were verified September 18; that test predates deployment.
